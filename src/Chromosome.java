@@ -9,6 +9,8 @@ abstract class Chromosome {
 
     public double getFitnessScore() { return fitnessScore; }
     public void setFitnessScore (double newScore) { fitnessScore=newScore; };
+    public Object getContents() { return contents; }
+    public void setContents(Object contents) { this.contents = contents; }
 
     /**
      * Constructor to create a new generic Chromosome
