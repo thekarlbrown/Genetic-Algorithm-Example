@@ -2,14 +2,14 @@ import java.util.Random;
 
 /**
  * Created by Karl (thekarlbrown) on 6/9/2015.
+ * Deals with lowercase only currently
+ * TODO: Implement both alphabetical cases, potentially eliminate amount of casting
  * Implementation of my Abstract Chromosome class
  */
 public class StringChromosome extends Chromosome {
 
     /**
      * Constructor which implements a specific object for the Chromosome
-     * Deals with lowercase only currently
-     * TODO: Implement both alphabetical cases, potentially eliminate amount of casting
      * @param contents String to be used as contents of Chromosome
      */
     public StringChromosome (String contents){ super(contents);   }

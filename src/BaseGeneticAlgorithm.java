@@ -12,6 +12,10 @@ public abstract class BaseGeneticAlgorithm {
     private final int sizeOfPopulation; //Number of Chromosomes in the genetic algorithm
     private final double chanceOfMutation; //Chance that a Chromosome will randomly mutate
     private List<Chromosome> chromosomes; //Each of the Chromosomes in our genetic algorithm
+    protected int firstSelection; //Save the two altered components for speed increase in Fitness Score calculation
+    protected int secondSelection;
+    public List<Chromosome> getChromosomes(){ return chromosomes; }
+    public int getSizeOfPopulation(){ return sizeOfPopulation; }
 
     /**
      * Constructor for a generic Genetic Algorithm with universal characteristics
@@ -24,10 +28,12 @@ public abstract class BaseGeneticAlgorithm {
         chanceOfCrossover=crossoverRate;
         chanceOfMutation=mutationRate;
         chromosomes=new ArrayList<>();
+        firstSelection=-1;
+        secondSelection=-1;
         for(int x=0;x<populationSize;x++){ chromosomes.add(createRandomChromosome()); }
     }
 
-    abstract void assignFitnessScores(); //How the specific Genetic Algorithm creates a fitness score
+    abstract void assignFitnessScores(boolean firstTime); //How the specific Genetic Algorithm creates a fitness score
     abstract String visualizeContents(); //How we choose to visualize the contents of our List
     abstract Chromosome createRandomChromosome(); //Will be abstracted with subclass of Chromosome
 
@@ -55,12 +61,11 @@ public abstract class BaseGeneticAlgorithm {
 
     public void performRoundOfGeneticAlgorithm(){
         //Test each Chromosome to see its quality compared to goal
-        assignFitnessScores();
+        assignFitnessScores(false);
         //Select two Chromosomes from the population
-        int firstSelection = rouletteWheelSelection();
-        int secondSelection = rouletteWheelSelection();
+        firstSelection = rouletteWheelSelection();
+        secondSelection = rouletteWheelSelection();
         while(firstSelection==secondSelection){ secondSelection=rouletteWheelSelection(); }
-
         Chromosome firstSelected = chromosomes.get(firstSelection);
         Chromosome secondSelected = chromosomes.get(secondSelection);
         //Perform a crossover with the two selected Chromosomes
