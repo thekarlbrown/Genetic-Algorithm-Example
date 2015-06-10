@@ -1,4 +1,4 @@
-Genetic Algorithm
+--- Genetic Algorithm/OOP Example --- 
 
 This functions to test my knowledge of genetic algorithms and their implementations. It consists of abstract base classes for both the Genetic Algorithm and its Chromosome. 
 
