@@ -15,11 +15,10 @@ public class StringGeneticAlgorithm extends BaseGeneticAlgorithm {
      * @param crossoverRate Odds of each Chromosome switching
      * @param populationSize Number of Chromosomes in the genetic algorithm
      * @param mutationRate Chance that a Chromosome will randomly mutate
-     * @param stringLength Length of each String in the Chromosome
      */
-    public StringGeneticAlgorithm(double crossoverRate, int populationSize, double mutationRate, int stringLength, String targetString){
+    public StringGeneticAlgorithm(double crossoverRate, int populationSize, double mutationRate, String targetString){
         super(crossoverRate, populationSize, mutationRate);
-        this.stringLength=stringLength;
+        this.stringLength=targetString.length();
         this.targetChars=targetString.toCharArray();
     }
 
