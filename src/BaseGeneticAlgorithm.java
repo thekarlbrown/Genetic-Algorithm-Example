@@ -30,7 +30,6 @@ public abstract class BaseGeneticAlgorithm {
         chromosomes=new ArrayList<>();
         firstSelection=-1;
         secondSelection=-1;
-        for(int x=0;x<populationSize;x++){ chromosomes.add(createRandomChromosome()); }
     }
 
     abstract void assignFitnessScores(boolean firstTime); //How the specific Genetic Algorithm creates a fitness score
@@ -51,8 +50,8 @@ public abstract class BaseGeneticAlgorithm {
         //Randomly choose a value inside the total fitness score
         double randomizedSelection=totalFitness*Math.random();
         //Go through the List, adding up the fitness scores then exit when we hit the chosen value
-        for(int x=0;x<chromosomes.size();){
-            offset+=chromosomes.get(0).getFitnessScore();
+        for(int x=0;x<chromosomes.size();x++){
+            offset+=chromosomes.get(x).getFitnessScore();
             if(randomizedSelection<offset){  return x;    }
         }
         //This point is unreachable, -1 indicates an error in the Roulette Wheel Algorithm

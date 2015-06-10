@@ -16,13 +16,13 @@ public class StringChromosome extends Chromosome {
 
     /**
      * Implementation of a Genetic Mutation for Strings that changes a letter
-     * to a random letter with custom odds 1/(Length*2)
+     * to a random letter with potential custom odds 1/(Length*2)
      * @param oddsOfMutation Odds of mutating each specific element of object, unused
      */
     @Override
     void mutationOfContents(double oddsOfMutation) {
         int stringLength=((String)getContents()).length();
-        oddsOfMutation=.5/((double)stringLength);
+        //oddsOfMutation=.5/((double)stringLength); //Currently not implemented, too much mutation for good results
         String contents=((String) getContents());
         Random random = new Random(); //Creating it once here is currently quickest approach
         //Randomly checking for a mutation at every character
@@ -56,7 +56,7 @@ public class StringChromosome extends Chromosome {
         //Choose a random point for the crossover, insuring one Gene remains
         int intersection=random.nextInt(stringLength-1);
         //Perform a swap utilizing the saved String contents
-        setContents(partnerContents.substring(intersection,intersection+1)+contents.substring(intersection+1,stringLength));
-        partner.setContents(contents.substring(intersection,intersection+1)+partnerContents.substring(intersection+1,stringLength));
+        setContents(partnerContents.substring(0,intersection+1)+contents.substring(intersection+1,stringLength));
+        partner.setContents(contents.substring(0,intersection+1)+partnerContents.substring(intersection+1,stringLength));
     }
 }

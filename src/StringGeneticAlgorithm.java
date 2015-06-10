@@ -20,6 +20,7 @@ public class StringGeneticAlgorithm extends BaseGeneticAlgorithm {
         super(crossoverRate, populationSize, mutationRate);
         this.stringLength=targetString.length();
         this.targetChars=targetString.toCharArray();
+        for(int x=0;x<populationSize;x++){ getChromosomes().add(createRandomChromosome()); }
     }
 
     /**
@@ -66,7 +67,7 @@ public class StringGeneticAlgorithm extends BaseGeneticAlgorithm {
             //Using a protected modifier, checks to make sure the
             if(firstTime||x==firstSelection||x==secondSelection) {
                 Chromosome currentChromosome=currentList.get(x);
-                mismatchedCount = 1;
+                mismatchedCount = 0;
                 //Compare to the target String character by character
                 char[] currentChars = ((String) currentChromosome.getContents()).toCharArray();
                 for (int y = 0; y < stringLength; y++) {
